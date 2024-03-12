@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios ES6</title>
+</head>
+
+<body>
+    <script>
+
+        //ex2.1 Cria uma ligação à api https://cat-fact.herokuapp.com/facts/ com os 2 métodos que falamos: XMLHTTPRequest e fetch;
+
+        //Ligação com XMLHTTPRequest
+
+        let xhr = new XMLHttpRequest();
+
+        const requestWithXMLHTTPReq = xhr.open("GET", "https://cat-fact.herokuapp.com/facts/");
+
+        //Ligação com fetch
+
+        const requestWithFetch = fetch("https://cat-fact.herokuapp.com/facts/");
+
+        //Façam a resolução da ligação à API com uma promise, e façam resolve com o que é obtido pela API.
+
+        const data = Promise.resolve(requestWithFetch).then(function (response) {
+            return response.json();
+        }).then((data) => data);
+
+        //Façam uma função que faça console.log de todas as frases que estão na propriedade text
+        async function showApiData(data) {
+            let finalData = await data;
+            finalData.forEach(element => {
+                console.log(element.text);
+            });
+        };
+
+        showApiData(data);
+
+    </script>
+</body>
+
+</html>
+
+
+xhr.onload = () => {
+console.log(JSON.parse(xhr.response));
+};
+
+xhr.onerror = (error) => {
+console.log(error);
+};
+
+xhr.send();

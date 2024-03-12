@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios ES6</title>
+</head>
+
+<body>
+    <script>
+        const companies = [
+            { name: "Company One", category: "Finance", start: 1981, end: 2004 },
+            { name: "Company Two", category: "Retail", start: 1992, end: 2008 },
+            { name: "Company Three", category: "Auto", start: 1999, end: 2007 },
+            { name: "Company Four", category: "Retail", start: 1989, end: 2010 },
+            { name: "Company Five", category: "Technology", start: 2009, end: 2014 },
+            { name: "Company Six", category: "Finance", start: 1987, end: 2010 },
+            { name: "Company Seven", category: "Auto", start: 1986, end: 1996 },
+            { name: "Company Eight", category: "Technology", start: 2011, end: 2016 },
+            { name: "Company Nine", category: "Retail", start: 1981, end: 1989 }
+        ];
+
+        const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+
+        const person = {
+            name: "Costas",
+            address: {
+                street: "Lalaland 12"
+            }
+        };
+
+        //Função para imprimir os nomes
+        function printName(companies) {
+            companies.forEach((company) => {
+                console.log(company.name);
+            });
+        }
+
+        //ex1.1 - Faz console.log do nome de cada empresa usando 
+        console.log("---EX1.1---");
+        printName(companies);
+
+        //ex1.2 - Faz console.log do nome de cada empresa iniciada após 1987
+        let companies1987 = companies.filter((company) => company.start > 1987);
+        console.log("---EX1.2---");
+        printName(companies1987);
+
+        //ex1.3 - Faz console.log da soma se somar todas os valores do array ages usando reduce
+        const initialValue = 0;
+        const somaAges = ages.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            initialValue
+        );
+        console.log("---EX1.3---");
+        console.log(somaAges);
+
+        //ex1.4 - Faz console.log de um novo objeto que tenha as propriedades de name e category iguais a companies[0], usando o destructuring de objects
+        const newObj = {
+            name,
+            category
+        } = { name: companies[0].name, category: companies[0].category };
+        console.log("---EX1.4---");
+        console.log(newObj);
+
+        //ex1.5 - Faz destructuring da propriedade street e cria uma variável chamada street do objet person
+        const { address: { street } } = person;
+
+        console.log("---EX1.5---");
+        console.log(street); //deixei o console log só pra facilitar o teste
+
+        //ex1.6 - Cria uma função que devolve as companies que tenham uma data de início superior a 1996 e inferior a 2004, inclusivé
+        function getCompaniesWithDateBetween() {
+            return companies.filter((company) => company.start >= 1996 && company.start <= 2004);
+        }
+        console.log("---EX1.6---");
+        console.log(getCompaniesWithDateBetween()); //deixei o console log só pra facilitar o teste
+    </script>
+</body>
+
+</html>
